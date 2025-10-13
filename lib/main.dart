@@ -95,6 +95,7 @@ class PainterApp extends StatelessWidget {
       child: BlocBuilder<LocaleCubit, LocaleState>(
         builder: (context, localeState) {
           return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             title: 'Painter App',
             routerConfig: goRouter,
             scaffoldMessengerKey: AppKeys.scaffoldMessengerKey,
