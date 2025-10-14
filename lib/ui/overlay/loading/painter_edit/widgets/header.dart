@@ -43,7 +43,7 @@ class EditHeader extends StatelessWidget {
                               AppColors.white.withValues(alpha: 0.2),
                             ),
                             onTap: () {
-                              goRouter.go(AppRoute.home);
+                              goRouter.pop(AppRoute.home);
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(10),

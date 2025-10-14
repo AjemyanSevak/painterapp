@@ -11,14 +11,20 @@ class _$PainterEditState extends PainterEditState {
   final bool isLoading;
   @override
   final String? error;
+  @override
+  final bool deleteLoading;
 
   factory _$PainterEditState(
           [void Function(PainterEditStateBuilder)? updates]) =>
       (new PainterEditStateBuilder()..update(updates))._build();
 
-  _$PainterEditState._({required this.isLoading, this.error}) : super._() {
+  _$PainterEditState._(
+      {required this.isLoading, this.error, required this.deleteLoading})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(
         isLoading, r'PainterEditState', 'isLoading');
+    BuiltValueNullFieldError.checkNotNull(
+        deleteLoading, r'PainterEditState', 'deleteLoading');
   }
 
   @override
@@ -34,7 +40,8 @@ class _$PainterEditState extends PainterEditState {
     if (identical(other, this)) return true;
     return other is PainterEditState &&
         isLoading == other.isLoading &&
-        error == other.error;
+        error == other.error &&
+        deleteLoading == other.deleteLoading;
   }
 
   @override
@@ -42,6 +49,7 @@ class _$PainterEditState extends PainterEditState {
     var _$hash = 0;
     _$hash = $jc(_$hash, isLoading.hashCode);
     _$hash = $jc(_$hash, error.hashCode);
+    _$hash = $jc(_$hash, deleteLoading.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -50,7 +58,8 @@ class _$PainterEditState extends PainterEditState {
   String toString() {
     return (newBuiltValueToStringHelper(r'PainterEditState')
           ..add('isLoading', isLoading)
-          ..add('error', error))
+          ..add('error', error)
+          ..add('deleteLoading', deleteLoading))
         .toString();
   }
 }
@@ -67,6 +76,11 @@ class PainterEditStateBuilder
   String? get error => _$this._error;
   set error(String? error) => _$this._error = error;
 
+  bool? _deleteLoading;
+  bool? get deleteLoading => _$this._deleteLoading;
+  set deleteLoading(bool? deleteLoading) =>
+      _$this._deleteLoading = deleteLoading;
+
   PainterEditStateBuilder();
 
   PainterEditStateBuilder get _$this {
@@ -74,6 +88,7 @@ class PainterEditStateBuilder
     if ($v != null) {
       _isLoading = $v.isLoading;
       _error = $v.error;
+      _deleteLoading = $v.deleteLoading;
       _$v = null;
     }
     return this;
@@ -98,7 +113,9 @@ class PainterEditStateBuilder
         new _$PainterEditState._(
             isLoading: BuiltValueNullFieldError.checkNotNull(
                 isLoading, r'PainterEditState', 'isLoading'),
-            error: error);
+            error: error,
+            deleteLoading: BuiltValueNullFieldError.checkNotNull(
+                deleteLoading, r'PainterEditState', 'deleteLoading'));
     replace(_$result);
     return _$result;
   }

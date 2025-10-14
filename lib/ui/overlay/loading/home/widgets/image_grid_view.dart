@@ -12,48 +12,42 @@ class GalleryGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const radius = 22.0;
-
-    return BlocBuilder<HomeCubit, HomeState>(
-      builder: (context, state) {
-        return StreamBuilder(
-          stream: HomeCubit().streamUserImages(),
-          builder: (context, snap) {
-            if (snap.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            final images = snap.data ?? const [];
-            if (images.isEmpty) {
-              context.read<HomeCubit>().setCreateButtonVisible(true);
-              return Center(
-                child: Text(
-                  'No images yet',
-                  style: AppTextStyles.bodyLargeMedium.copyWith(
-                    color: AppColors.whiter,
-                  ),
-                ),
-              );
-            } else {
-              context.read<HomeCubit>().setCreateButtonVisible(false);
-            }
-
-            return GridView.builder(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 20,
-                childAspectRatio: 1.05, // ≈ almost square like your mock
+    return StreamBuilder(
+      stream: HomeCubit().streamUserImages(),
+      builder: (context, snap) {
+        if (snap.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        final images = snap.data ?? const [];
+        if (images.isEmpty) {
+          context.read<HomeCubit>().setCreateButtonVisible(true);
+          return Center(
+            child: Text(
+              'No images yet',
+              style: AppTextStyles.bodyLargeMedium.copyWith(
+                color: AppColors.whiter,
               ),
-              itemCount: images.length,
-              itemBuilder: (ctx, i) {
-                final img = images[i];
-                return _GalleryTile(
-                  imageUrl: img.url,
-                  radius: radius,
-                  onTap: () {
-                    goRouter.go(AppRoute.painteredit, extra: img);
-                  },
-                );
+            ),
+          );
+        } else {
+          context.read<HomeCubit>().setCreateButtonVisible(false);
+        }
+        return GridView.builder(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20,
+            childAspectRatio: 1.05, // ≈ almost square like your mock
+          ),
+          itemCount: images.length,
+          itemBuilder: (ctx, i) {
+            final img = images[i];
+            return _GalleryTile(
+              imageUrl: img.url,
+              radius: radius,
+              onTap: () {
+                goRouter.push(AppRoute.painteredit, extra: img);
               },
             );
           },

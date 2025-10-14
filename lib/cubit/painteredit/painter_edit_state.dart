@@ -6,11 +6,16 @@ abstract class PainterEditState
 
   bool get isLoading;
   String? get error;
+  bool get deleteLoading;
 
   factory PainterEditState([Function(PainterEditStateBuilder b) updates]) =
       _$PainterEditState;
 
   factory PainterEditState.initial() {
-    return PainterEditState((s) => s..isLoading = false);
+    return PainterEditState(
+      (s) => s
+        ..isLoading = false
+        ..deleteLoading = false,
+    );
   }
 }

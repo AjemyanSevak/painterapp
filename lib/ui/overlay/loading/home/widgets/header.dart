@@ -14,7 +14,6 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localeStrings = AppLocalizations.of(context)!;
-
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return Container(
@@ -78,7 +77,7 @@ class HomeHeader extends StatelessWidget {
                                     AppColors.white.withValues(alpha: 0.2),
                                   ),
                                   onTap: () {
-                                    goRouter.go(AppRoute.painternew);
+                                    goRouter.push(AppRoute.painternew);
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(10),

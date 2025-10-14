@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
                           child: AppButton(
                             label: localeStrings.create,
                             onPressed: () {
-                              goRouter.go(AppRoute.painternew);
+                              goRouter.push(AppRoute.painternew);
                             },
                             variant: AppButtonVariant
                                 .primaryGradient, // see all variants below

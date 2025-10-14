@@ -5,14 +5,22 @@ import 'package:built_value/built_value.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:painter_app/base/routes/rout_constants.dart';
+import 'package:painter_app/base/routes/routes.dart';
+import 'package:painter_app/core/injector/injector.dart';
 import 'package:painter_app/firebase/image/image_repository.dart';
 import 'package:painter_app/main.dart';
+import 'package:painter_app/models/image/image_model.dart';
 
 part 'painter_edit_cubit.g.dart';
 part 'painter_edit_state.dart';
 
 class PainterEditCubit extends Cubit<PainterEditState> {
-  PainterEditCubit({ImageRepository? repo}) : super(PainterEditState.initial());
+  PainterEditCubit({ImageRepository? repo})
+    : _repo = repo ?? sl(),
+      super(PainterEditState.initial());
+
+  final ImageRepository _repo;
 
   /// - Optionally delete old object
   Future<void> replaceWithNewVersion({
@@ -73,6 +81,7 @@ class PainterEditCubit extends Cubit<PainterEditState> {
       );
 
       emit(state.rebuild((s) => s.isLoading = false));
+      navigateBack();
     } catch (e) {
       emit(
         state.rebuild(
@@ -82,5 +91,34 @@ class PainterEditCubit extends Cubit<PainterEditState> {
         ),
       );
     }
+  }
+
+  Future<void> delete(ImageDoc doc) async {
+    emit(
+      state.rebuild(
+        (s) => s
+          ..error = null
+          ..deleteLoading = true,
+      ),
+    );
+    try {
+      await _repo.deleteImage(doc.id, doc.storagePath);
+      emit(state.rebuild((s) => s..deleteLoading = false));
+      navigateBack();
+    } catch (e) {
+      emit(
+        state.rebuild(
+          (s) => s
+            ..error = e.toString()
+            ..deleteLoading = false,
+        ),
+      );
+    }
+  }
+
+  Future<void> navigateBack() async {
+    Future.delayed(Duration(milliseconds: 500), () {
+      goRouter.pop(AppRoute.home);
+    });
   }
 }

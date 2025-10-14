@@ -2,6 +2,8 @@ import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
 import 'package:built_value/built_value.dart';
+import 'package:painter_app/base/routes/rout_constants.dart';
+import 'package:painter_app/base/routes/routes.dart';
 import 'package:painter_app/core/injector/injector.dart';
 import 'package:painter_app/firebase/image/image_repository.dart';
 import 'package:painter_app/main.dart';
@@ -47,6 +49,7 @@ class PainterNewCubit extends Cubit<PainterNewState> {
       );
 
       emit(state.rebuild((s) => s.isLoading = false));
+      navigateBack();
     } catch (e) {
       emit(
         state.rebuild(
@@ -70,6 +73,7 @@ class PainterNewCubit extends Cubit<PainterNewState> {
     try {
       await _repo.deleteImage(doc.id, doc.storagePath);
       emit(state.rebuild((s) => s.isLoading = false));
+      navigateBack();
     } catch (e) {
       emit(
         state.rebuild(
@@ -79,5 +83,11 @@ class PainterNewCubit extends Cubit<PainterNewState> {
         ),
       );
     }
+  }
+
+  Future<void> navigateBack() async {
+    Future.delayed(Duration(milliseconds: 500), () {
+      goRouter.pop(AppRoute.home);
+    });
   }
 }
