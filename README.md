@@ -30,6 +30,11 @@ Exports and displays uploaded artwork seamlessly
 
 Hereafter are the steps to follow to setup a development environment based on Flutter.
 
+Created with
+(Flutter (Channel stable, 3.35.0, on macOS 15.6.1 24G90 darwin-x64, locale en-AM)
+Xcode - develop for iOS and macOS (Xcode 16.2)
+)
+
 1. Install Flutter SDK [Install - Flutter](https://flutter.io/docs/get-started/install)
 
 2. Clone the project
