@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:painter_app/base/colors/app_colors.dart';
 import 'package:painter_app/cubit/painternew/painter_new_cubit.dart';
 import 'package:painter_app/ui/overlay/loading/painter_new/widgets/header.dart';
 import 'package:painter_app/ui/overlay/loading/widgets/app_background.dart';
@@ -42,6 +43,9 @@ class CreateNewView extends StatelessWidget {
                   Expanded(child: CanvasPainterPage(key: pageKey)),
                 ],
               ),
+              state.isLoading
+                  ? Container(color: AppColors.black.withValues(alpha: 0.1))
+                  : SizedBox(),
             ],
           ),
         );

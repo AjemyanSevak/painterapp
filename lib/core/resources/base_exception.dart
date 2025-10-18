@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class BaseException implements Exception {
@@ -33,35 +32,6 @@ class BaseException implements Exception {
   }
   factory BaseException.fromFirebase(final FirebaseException e) {
     return BaseException(message: e.message, code: e.code);
-  }
-
-  factory BaseException.fromDioException(final DioException e) {
-    final responseData = e.response?.data;
-
-    if (e.response == null) {
-      return BaseException.internetConnectionException();
-    } else if (responseData is Map && responseData.containsKey('error')) {
-      final errorData = responseData['error'];
-      var message = 'Unknown error';
-
-      if (errorData is Map && errorData['message'] != null) {
-        message = errorData['message'].toString();
-      } else if (errorData is String) {
-        message = errorData;
-      }
-
-      return BaseException(
-        message: message,
-        code: e.response?.statusCode?.toString(),
-      );
-    } else if (responseData is String) {
-      return BaseException(
-        code: e.response?.statusCode?.toString(),
-        message: responseData,
-      );
-    } else {
-      return BaseException.unknown();
-    }
   }
 
   factory BaseException.serverException() {

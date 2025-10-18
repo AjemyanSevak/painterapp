@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:painter_app/base/global_values/global_values.dart';
 import 'package:painter_app/base/keys/app_keys.dart';
 import 'package:painter_app/base/routes/routes.dart';
 import 'package:painter_app/base/theme.dart';
-import 'package:painter_app/core/env/env.dart';
 import 'package:painter_app/core/injector/injector.dart' as service_locator;
 import 'package:painter_app/cubit/home/home_cubit.dart';
 import 'package:painter_app/cubit/locale/locale_cubit.dart';
@@ -16,7 +14,6 @@ import 'package:painter_app/cubit/painteredit/painter_edit_cubit.dart';
 import 'package:painter_app/cubit/painternew/painter_new_cubit.dart';
 import 'package:painter_app/firebase_options.dart';
 import 'package:painter_app/l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -60,19 +57,8 @@ Future<void> main() async {
         .currentPlatform, // uses the right keys per platform
   );
 
-  // Check if the app launched for the first time
-  // and clear the secure storage.
-  final sharedPrefs = await SharedPreferences.getInstance();
-  if (sharedPrefs.getBool('first_launch') ?? true) {
-    await const FlutterSecureStorage().deleteAll();
-    sharedPrefs.setBool('first_launch', false);
-  }
-
   // Register singletons.
   service_locator.call();
-
-  // Initialize the .env file reader.
-  await AppEnvironment.init();
 
   // hide splash screen
   FlutterNativeSplash.remove();

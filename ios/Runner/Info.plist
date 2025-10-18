@@ -31,23 +31,21 @@
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>Allow to pick a background image.</string>
-		<key>NSPhotoLibraryAddUsageDescription</key>
-		<string>We need access to save images.</string>
+		<string>The application requires access to the gallery to upload images to the editor for further editing.</string>
 		<key>NSCameraUsageDescription</key>
-		<string>We use the camera to take photos.</string>
+		<string>The application requires access to the camera to take a photo and upload it to the editor for further editing.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>The permission is not used by the application, but is required by the library.</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>The permission is not used by the application, but is required by the library.</string>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
-			<string>UIInterfaceOrientationLandscapeLeft</string>
-			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<key>UISupportedInterfaceOrientations~ipad</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
 			<string>UIInterfaceOrientationPortraitUpsideDown</string>
-			<string>UIInterfaceOrientationLandscapeLeft</string>
-			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true/>

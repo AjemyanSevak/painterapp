@@ -448,6 +448,9 @@ class CanvasPainterPageState extends State<CanvasPainterPage> {
                     ),
                   ),
                   onTap: () {
+                    Size size = MediaQuery.of(context).size;
+                    double screenWidth = size.width;
+                    double screenHeight = size.height;
                     exportAsImage().then((byteData) {
                       if (byteData != null) {
                         try {
@@ -459,6 +462,12 @@ class CanvasPainterPageState extends State<CanvasPainterPage> {
                                   mimeType: 'image/png', //
                                 ),
                               ],
+                              sharePositionOrigin: Rect.fromLTWH(
+                                0,
+                                0,
+                                screenWidth,
+                                screenHeight,
+                              ),
                             ),
                           );
                         } catch (e) {

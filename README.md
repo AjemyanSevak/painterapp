@@ -133,10 +133,6 @@ Localization: l10n + intl
 
 * [reactive_forms](https://pub.dev/packages/reactive_forms) — Powerful model-driven forms with validation and reactive updates.
 
-* [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage) — Securely stores key-value data on Android and iOS (encrypted).
-
-* [shared_preferences](https://pub.dev/packages/shared_preferences) — Stores small key-value data locally (e.g. user settings).
-
 * [built_value](https://pub.dev/packages/built_value) — Generates immutable value types and serializers for Dart.
 
 * [built_collection](https://pub.dev/packages/built_collection) — Immutable collection classes used with built_value.
@@ -145,11 +141,7 @@ Localization: l10n + intl
 
 * [intl](https://pub.dev/packages/intl) — Provides internationalization, date/time formatting, and localization utilities.
 
-* [dio](https://pub.dev/packages/dio) — Powerful HTTP client for Dart with interceptors, configuration, and file upload/download.
-
 * [rxdart](https://pub.dev/packages/rxdart) — Reactive extensions for Dart streams with operators like debounce and combineLatest.
-
-* [auto_size_text](https://pub.dev/packages/auto_size_text) — Automatically resizes text to fit within its bounds.
 
 * [google_fonts](https://pub.dev/packages/google_fonts) — Easily use Google Fonts in your Flutter project.
 

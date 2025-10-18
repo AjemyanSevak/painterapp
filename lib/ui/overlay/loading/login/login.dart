@@ -20,6 +20,7 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     final localeStrings = AppLocalizations.of(context)!;
     return BlocProvider(
       create: (context) => LoginCubit(),
@@ -27,6 +28,7 @@ class LoginView extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             body: Stack(
+              alignment: Alignment.center,
               children: [
                 AppBackground(),
                 Container(
@@ -42,7 +44,7 @@ class LoginView extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(height: 250),
+                          SizedBox(height: screenSize.height / 5),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -78,6 +80,8 @@ class LoginView extends StatelessWidget {
                                 fillColor: AppColors.black,
                                 obscureText: false,
                                 context: context,
+                                keyboardType: TextInputType.emailAddress,
+                                textInputAction: TextInputAction.next,
                               ),
                               SizedBox(height: 20),
                               ReactiveImput(
@@ -87,10 +91,12 @@ class LoginView extends StatelessWidget {
                                 requiredMessage: localeStrings.passwordrequired,
                                 fillColor: AppColors.black,
                                 obscureText: true,
+                                keyboardType: TextInputType.visiblePassword,
+                                textInputAction: TextInputAction.done,
                               ),
                             ],
                           ),
-                          SizedBox(height: 140),
+                          SizedBox(height: screenSize.height / 9),
                           Column(
                             children: [
                               AppButton(

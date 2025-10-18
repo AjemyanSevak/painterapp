@@ -10,6 +10,8 @@ class ReactiveImput extends StatelessWidget {
   final Color fillColor;
   final bool obscureText;
   final BuildContext context;
+  final TextInputType keyboardType;
+  final TextInputAction textInputAction;
 
   final String? requiredMessage;
   final String? passwordCustomKeyMessage;
@@ -23,6 +25,8 @@ class ReactiveImput extends StatelessWidget {
     this.obscureText = false,
     this.requiredMessage = '',
     this.passwordCustomKeyMessage = '',
+    required this.keyboardType,
+    required this.textInputAction,
   });
 
   @override
@@ -88,6 +92,8 @@ class ReactiveImput extends StatelessWidget {
                           ValidationMessage.mustMatch: (_) =>
                               localeStrings.password,
                         },
+                        keyboardType: keyboardType,
+                        textInputAction: textInputAction,
                       ),
                     ),
                   ),
@@ -95,7 +101,6 @@ class ReactiveImput extends StatelessWidget {
                   Container(
                     height: 1,
                     margin: const EdgeInsets.only(top: 6, left: 16, right: 16),
-
                     color: AppColors.whiter.withValues(alpha: 0.3),
                   ),
                 ],

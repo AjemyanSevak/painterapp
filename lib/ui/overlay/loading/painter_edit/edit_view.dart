@@ -64,6 +64,9 @@ class EditView extends StatelessWidget {
                   ),
                 ],
               ),
+              state.deleteLoading || state.isLoading
+                  ? Container(color: AppColors.black.withValues(alpha: 0.1))
+                  : SizedBox(),
             ],
           ),
         );
